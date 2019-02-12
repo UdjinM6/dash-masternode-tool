@@ -789,6 +789,9 @@ class ProposalsDlg(QDialog, ui_proposals.Ui_ProposalsDlg, wnd_utils.WndUtils):
         """ Reads proposals from the Dash network. """
 
         def find_prop_data(prop_data, level=1):
+            """ No need ot look any further if prop_data is a dict. """
+            if isinstance(prop_data, dict) and prop_data['type'] == 1:
+                return prop_data
             """ Find proposal dict inside a list extracted from DataString field. """
             if isinstance(prop_data, list):
                 if len(prop_data) > 2:
